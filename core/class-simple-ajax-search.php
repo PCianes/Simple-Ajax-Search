@@ -125,9 +125,9 @@ class Simple_Ajax_Search {
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site and also into admin area, like libraries and helpers
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-simple-ajax-search-includes.php';
+		//require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-simple-ajax-search-includes.php';
 
-		$includes = new Simple_Ajax_Search_Includes( $this->get_plugin_name(), $this->get_version() );
+		//$includes = new Simple_Ajax_Search_Includes( $this->get_plugin_name(), $this->get_version() );
 
 		/**
 		 * Get loader using its singleton
@@ -189,6 +189,12 @@ class Simple_Ajax_Search {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+
+		$this->loader->add_action( 'wp_ajax_simple_ajax_search', $plugin_public, 'ajax_search' );
+		$this->loader->add_action( 'wp_ajax_nopriv_simple_ajax_search', $plugin_public, 'ajax_search' );
+
+		$this->loader->add_shortcode( 'simple-ajax-search', $plugin_public, 'add_search_template' );
+
 	}
 
 	/**

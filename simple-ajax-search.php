@@ -12,9 +12,9 @@
  * @package           Simple_Ajax_Search
  *
  * @wordpress-plugin
- * Plugin Name:       Simple_Ajax_Search
+ * Plugin Name:       Simple Ajax Search
  * Plugin URI:        https://pablocianes.com
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       Easily create a dynamic ajax search engine for your content.
  * Version:           1.0.0
  * Author:            Pablo Cianes
  * Author URI:        https://pablocianes.com
@@ -25,12 +25,12 @@
  */
 
 /*
-Simple_Ajax_Search is free software: you can redistribute it and/or modify
+Simple Ajax Search is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 2 of the License, or
 any later version.
 
-Simple_Ajax_Search is distributed in the hope that it will be useful,
+Simple Ajax Search is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.

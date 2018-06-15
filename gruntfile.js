@@ -21,7 +21,7 @@ module.exports = function(grunt) {
 				src: 'languages/*.po',
 				expand: true,
 			},
-		}
+		},
 
 		uglify: {
 			my_target: {
@@ -40,7 +40,7 @@ module.exports = function(grunt) {
 			target: {
 				files: {
 					'admin/css/simple-ajax-search-admin.min.css': ['admin/css/simple-ajax-search-admin.css'],
-					//'public/css/simple-ajax-search-public.min.css': ['public/css/simple-ajax-search-public.css'],
+					'public/css/simple-ajax-search-public.min.css': ['public/css/simple-ajax-search-public.css'],
 				}
 			}
 		},

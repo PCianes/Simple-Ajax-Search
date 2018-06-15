@@ -14,3 +14,14 @@
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
+<div class="search">
+	<input type="text" name="search" id="search" placeholder="Realiza una busqueda...">
+	<div id="category">
+		<?php foreach ( $categories as $category ) : ?>
+			<input class="pc-custom-check" id="<?php echo (int) $category->term_id; ?>" type="checkbox" checked/>
+			<label class="pc-custom-check-label" for="<?php echo (int) $category->term_id; ?>" title="Haz click para seleccionar"><?php echo esc_html( $category->name ); ?></label>
+		<?php endforeach; ?>
+	</div>
+</div>
+
+<div id="result"></div>

@@ -86,7 +86,7 @@ class Simple_Ajax_Search_Public {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/simple-ajax-search-public.min.css', array(), $this->version, 'all' );
+		wp_register_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/simple-ajax-search-public.min.css', array(), $this->version, 'all' );
 
 	}
 
@@ -109,7 +109,99 @@ class Simple_Ajax_Search_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/simple-ajax-search-public.min.js', array( 'jquery' ), $this->version, false );
+		wp_register_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/simple-ajax-search-public.min.js', array( 'jquery' ), $this->version, false );
+
+	}
+
+	/**
+	 * Add ajax search template by the shortcode [ simple-ajax-search ]
+	 *
+	 * @since    1.0.0
+	 * @param      array  $atts       Attributes of the shortcode set by user.
+	 * @param      string $content   Content of the shortcode set by user.
+	 */
+	public function add_search_template( $atts, $content = null ) {
+
+		$ajax_args = array(
+			'ajax_url' => admin_url( 'admin-ajax.php' ),
+			'nonce'    => wp_create_nonce( $this->plugin_name . '-nonce' ),
+			'cta'      => '<div id="not_found"><p><strong>Lo siento pero No hay resultados para tu busqueda.</strong></p></div>',
+		);
+
+		wp_localize_script( $this->plugin_name, 'ajax_object_search', $ajax_args );
+
+		wp_enqueue_script( $this->plugin_name );
+		wp_enqueue_style( $this->plugin_name );
+
+		$categories = get_categories();
+
+		ob_start();
+			include 'views/simple-ajax-search-public-display.php';
+			$template_to_return = ob_get_contents();
+		ob_end_clean();
+
+		return $template_to_return;
+	}
+
+
+	/**
+	 * The function to manage the custom search from Ajax.
+	 *
+	 * @since    1.0.0
+	 */
+	public function ajax_search() {
+
+		if ( ! check_ajax_referer( $this->plugin_name . '-nonce', 'nonce' ) ) {
+			wp_die( 'Error - unable to verify nonce, please try again.' );
+		}
+
+		$search     = ! empty( $_POST['search'] ) ? $_POST['search'] : false;
+		$categories = ! empty( $_POST['categories'] ) ? $_POST['categories'] : false;
+		$cat_array  = array();
+
+		if ( empty( $categories ) ) {
+			header( 'Content-type: application/json' );
+			echo wp_json_encode( false );
+			die;
+		}
+
+		foreach ( $categories as $category ) {
+			$cat_array[] = (int) $category;
+		}
+
+		$args = array(
+			'post_type'        => 'post',
+			'numberposts'      => -1,
+			's'                => sanitize_text_field( $search ),
+			'category__in'     => $cat_array,
+			'suppress_filters' => false,
+		);
+
+		$posts = get_posts( $args );
+
+		if ( empty( $posts ) ) {
+			header( 'Content-type: application/json' );
+			echo wp_json_encode( false );
+			die;
+		}
+
+		$output = array();
+
+		foreach ( $posts as $post ) {
+			setup_postdata( $post );
+
+			$category = get_the_category( $post->ID )[0];
+
+			$output[ $category->cat_ID ][] = array(
+				'title'    => $post->post_title,
+				'link'     => get_permalink( $post->ID ),
+				'category' => $category->cat_name,
+			);
+		}
+
+		header( 'Content-type: application/json' );
+		echo wp_json_encode( $output );
+		die;
 
 	}
 

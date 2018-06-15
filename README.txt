@@ -1,15 +1,15 @@
-=== Plugin Name ===
+=== Simple Ajax Search by Cianes' WP Suite ===
 Contributors: (this should be a list of wordpress.org userid's)
 Donate link: https://pablocianes.com
 Tags: comments, spam
 Requires at least: 4.6
-Tested up to: 4.9.5
+Tested up to: 4.9
 Stable tag: trunk
 Requires PHP: 5.2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+Easily create a dynamic ajax search engine for your content.
 
 == Description ==
 
