@@ -114,13 +114,15 @@ class Simple_Ajax_Search_Public {
 	}
 
 	/**
-	 * Add ajax search template by the shortcode [ simple-ajax-search ]
+	 * Add ajax input template by the shortcode [ sas-input ]
 	 *
 	 * @since    1.0.0
 	 * @param      array  $atts       Attributes of the shortcode set by user.
 	 * @param      string $content   Content of the shortcode set by user.
 	 */
-	public function add_search_template( $atts, $content = null ) {
+	public function add_input_template( $atts, $content = null ) {
+
+		$content = $content ? $content : 'Write here your search...';
 
 		$ajax_args = array(
 			'ajax_url' => admin_url( 'admin-ajax.php' ),
@@ -139,6 +141,20 @@ class Simple_Ajax_Search_Public {
 			include 'views/simple-ajax-search-public-display.php';
 			$template_to_return = ob_get_contents();
 		ob_end_clean();
+
+		return $template_to_return;
+	}
+
+	/**
+	 * Add ajax result template by the shortcode [ sas-result ]
+	 *
+	 * @since    1.0.0
+	 * @param      array  $atts       Attributes of the shortcode set by user.
+	 * @param      string $content   Content of the shortcode set by user.
+	 */
+	public function add_result_template( $atts, $content = null ) {
+
+		$template_to_return = '<div id="result" class="sas-result"></div>';
 
 		return $template_to_return;
 	}
@@ -190,7 +206,15 @@ class Simple_Ajax_Search_Public {
 		foreach ( $posts as $post ) {
 			setup_postdata( $post );
 
-			$category = get_the_category( $post->ID )[0];
+			$categories = get_the_category( $post->ID );
+
+			// in case of post with many categories asign to the first ok into array of search
+			foreach ( $categories as $cat ) {
+				if( ! in_array( $cat->cat_ID, $cat_array )  ){
+					continue;
+				}
+				$category = $cat; break;
+			}
 
 			$output[ $category->cat_ID ][] = array(
 				'title'    => $post->post_title,

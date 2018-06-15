@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Simple Ajax Search 1.0.0\n"
 "Report-Msgid-Bugs-To: "
 "http://wordpress.org/support/plugin/simple-ajax-search\n"
-"POT-Creation-Date: 2018-06-15 13:50:54+00:00\n"
+"POT-Creation-Date: 2018-06-15 15:14:27+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,6 +13,10 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: grunt-wp-i18n 0.4.9\n"
+
+#: public/views/simple-ajax-search-public-display.php:22
+msgid "Click to select"
+msgstr ""
 
 #. Plugin Name of the plugin/theme
 msgid "Simple Ajax Search"

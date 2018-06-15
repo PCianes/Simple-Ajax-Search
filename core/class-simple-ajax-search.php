@@ -193,7 +193,8 @@ class Simple_Ajax_Search {
 		$this->loader->add_action( 'wp_ajax_simple_ajax_search', $plugin_public, 'ajax_search' );
 		$this->loader->add_action( 'wp_ajax_nopriv_simple_ajax_search', $plugin_public, 'ajax_search' );
 
-		$this->loader->add_shortcode( 'simple-ajax-search', $plugin_public, 'add_search_template' );
+		$this->loader->add_shortcode( 'sas-input', $plugin_public, 'add_input_template' );
+		$this->loader->add_shortcode( 'sas-result', $plugin_public, 'add_result_template' );
 
 	}
 
