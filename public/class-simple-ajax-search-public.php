@@ -122,12 +122,27 @@ class Simple_Ajax_Search_Public {
 	 */
 	public function add_input_template( $atts, $content = null ) {
 
-		$content = $content ? $content : 'Write here your search...';
+		$content  = $content ? sanitize_text_field( $content ) : 'Write here your search...';
+		$defaults = array(
+			'blank'     => false,
+			'dashicons' => 'dashicons-media-document',
+			'headings'  => '#29AAE3',
+			'checked'   => '#F8931F',
+			'unchecked' => '#ccc',
+			'not_found' => 'Sorry but there are no results for your search.',
+		);
+
+		$atts = shortcode_atts( $defaults, $atts, 'sas-input' );
 
 		$ajax_args = array(
-			'ajax_url' => admin_url( 'admin-ajax.php' ),
-			'nonce'    => wp_create_nonce( $this->plugin_name . '-nonce' ),
-			'cta'      => '<div id="not_found"><p><strong>Lo siento pero No hay resultados para tu busqueda.</strong></p></div>',
+			'ajax_url'  => admin_url( 'admin-ajax.php' ),
+			'nonce'     => wp_create_nonce( $this->plugin_name . '-nonce' ),
+			'target'    => $atts['blank'] ? 'target="_blank"' : '',
+			'dashicons' => sanitize_text_field( $atts['dashicons'] ),
+			'color_1'   => sanitize_text_field( $atts['headings'] ),
+			'color_2'   => sanitize_text_field( $atts['checked'] ),
+			'color_3'   => sanitize_text_field( $atts['unchecked'] ),
+			'cta'       => '<div id="not_found"><p><strong>' . esc_html( $atts['not_found'] ) . '</strong></p></div>',
 		);
 
 		wp_localize_script( $this->plugin_name, 'ajax_object_search', $ajax_args );
@@ -154,7 +169,7 @@ class Simple_Ajax_Search_Public {
 	 */
 	public function add_result_template( $atts, $content = null ) {
 
-		$template_to_return = '<div id="result" class="sas-result"></div>';
+		$template_to_return = '<div id="sas-result" class="sas-result"></div>';
 
 		return $template_to_return;
 	}
@@ -171,8 +186,8 @@ class Simple_Ajax_Search_Public {
 			wp_die( 'Error - unable to verify nonce, please try again.' );
 		}
 
-		$search     = ! empty( $_POST['search'] ) ? $_POST['search'] : false;
-		$categories = ! empty( $_POST['categories'] ) ? $_POST['categories'] : false;
+		$search     = ! empty( $_POST['search'] ) ? sanitize_text_field( wp_unslash( $_POST['search'] ) ) : false;
+		$categories = ! empty( $_POST['categories'] ) ? wp_unslash( $_POST['categories'] ) : false;
 		$cat_array  = array();
 
 		if ( empty( $categories ) ) {
@@ -188,7 +203,7 @@ class Simple_Ajax_Search_Public {
 		$args = array(
 			'post_type'        => 'post',
 			'numberposts'      => -1,
-			's'                => sanitize_text_field( $search ),
+			's'                => $search,
 			'category__in'     => $cat_array,
 			'suppress_filters' => false,
 		);
@@ -208,12 +223,13 @@ class Simple_Ajax_Search_Public {
 
 			$categories = get_the_category( $post->ID );
 
-			// in case of post with many categories asign to the first ok into array of search
+			// in case of post with many categories asign to the first ok into array of search.
 			foreach ( $categories as $cat ) {
-				if( ! in_array( $cat->cat_ID, $cat_array )  ){
+				if ( ! in_array( $cat->cat_ID, $cat_array, true ) ) {
 					continue;
 				}
-				$category = $cat; break;
+				$category = $cat;
+				break;
 			}
 
 			$output[ $category->cat_ID ][] = array(

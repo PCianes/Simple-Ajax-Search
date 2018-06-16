@@ -22,9 +22,11 @@
 				$( '.sas-custom-check' ).each(
 					function() {
 						if ( $( this ).prop( 'checked' ) ) {
-								postData.categories.push( parseInt( $( this ).attr( 'id' ) ) );
+							$( this ).next().css( 'background', ajax_object_search.color_2 );
+							postData.categories.push( parseInt( $( this ).attr( 'id' ) ) );
 						} else {
-								$( '#cat_' + parseInt( $( this ).attr( 'id' ) ) ).remove();
+							$( this ).next().css( 'background', ajax_object_search.color_3 );
+							$( '#cat_' + parseInt( $( this ).attr( 'id' ) ) ).remove();
 						}
 					}
 				);
@@ -40,7 +42,7 @@
 
 						if ( response ) {
 
-								 $( '#not_found' ).remove();
+								$( '#not_found' ).remove();
 
 								$.each(
 									response, function( index , object ) {
@@ -55,8 +57,8 @@
 
 											$.each(
 												object, function( index , item ) {
-													output += '<div class="row"><span class="dashicons dashicons-media-document"></span>';
-													output += '<a target="_blank" href="' + item.link + '">';
+													output += '<div class="row"><span class="dashicons ' + ajax_object_search.dashicons + '"></span>';
+													output += '<a ' + ajax_object_search.target + ' href="' + item.link + '">';
 													output += item.title;
 													output += '</a></div>';
 												}
@@ -67,22 +69,22 @@
 										} else {
 
 											var output = '<div id="cat_' + index + '" class="cat_box">';
-											output    += '<div class="cat_title">';
+											output    += '<div class="cat_title" style="background:' + ajax_object_search.color_1 + ';">';
 											output    += '<p>' + object[0].category + '</p>';
 											output    += '</div>';
 
 											$.each(
 												object, function( index , item ) {
 
-													output += '<div class="row"><span class="dashicons dashicons-media-document"></span>';
-													output += '<a target="_blank" href="' + item.link + '">';
+													output += '<div class="row"><span class="dashicons ' + ajax_object_search.dashicons + '"></span>';
+													output += '<a ' + ajax_object_search.target + ' href="' + item.link + '">';
 													output += item.title;
 													output += '</a></div>';
 												}
 											);
 
 											output += '</div>';
-											$( '#result' ).append( output );
+											$( '#sas-result' ).append( output );
 
 										}
 
@@ -92,14 +94,14 @@
 								$( '.sas-custom-check' ).each(
 									function() {
 										if ( $.inArray( parseInt( $( this ).attr( 'id' ) ), catIDs ) == -1 ) {
-															$( '#cat_' + parseInt( $( this ).attr( 'id' ) ) ).remove();
+											$( '#cat_' + parseInt( $( this ).attr( 'id' ) ) ).remove();
 										}
 									}
 								);
 
 						} else {
-								 $( '#result' ).html( '' );
-								 $( "#result" ).append( ajax_object_search.cta );
+							$( '#sas-result' ).html( '' );
+							$( "#sas-result" ).append( ajax_object_search.cta );
 						}
 
 					}

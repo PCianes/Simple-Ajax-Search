@@ -2,15 +2,13 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
- .sas-custom-check {
+#sas-input .sas-custom-check {
 	display: none;
-  }
-  .sas-custom-check + .sas-custom-check-label {
-	/* Unchecked style  */
-	background-color: #ccc;
+}
+#sas-input .sas-custom-check + .sas-custom-check-label {
+/* Unchecked style  */
 	color: #fff;
 	padding: 5px 10px;
-	font-family: sans-serif;
 	cursor: pointer;
 	-webkit-user-select: none;
 	   -moz-user-select: none;
@@ -22,61 +20,41 @@
 	-webkit-backface-visibility: hidden;
 			backface-visibility: hidden;
 	transition: all 0.6s ease;
-  }
-  .sas-custom-check:checked + .sas-custom-check-label {
-	/* Checked style  */
-	background-color: #f8931f;
-	-webkit-backface-visibility: hidden;
-			backface-visibility: hidden;
-	-webkit-transform: rotateY(360deg);
-			transform: rotateY(360deg);
-  }
-
-  #categories {
-	   margin-top: 20px;
-  }
-
-  #result {
-	   display: flex;
-	  flex-wrap: wrap;
-	   margin-top: 20px;
-  }
-
-  .cat_box {
-	  width: 100%;
-	  border: solid 1px #ccc;
-	  margin-bottom: 20px;
-	  box-shadow: 0 4px 8px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);
-	  padding-bottom: 25px;
-  }
-
-  .cat_title {
-	  background: #29aae3;
-	  text-align: center;
-	  color: #fff;
-  }
-
-  .cat_box .row .dashicons {
-	  font-size: 2rem;
-	  margin: 8px 5px 0px 0px;
-  }
-
-  .cat_title p {
-	  padding: 5px 0px 5px 0px;
-  }
-
-  .cat_box .row {
-	  padding: 0px 10px 0px 10px;
-  }
-
-  .cat_box .row a {
-	  font-size: 1.5rem;
-	  color: #333;
-  }
-
-  @media only screen and (min-width: 1000px) {
-	  .cat_box {
-		  width: 45%;
-		  margin: 2.5%;
-	  }
-  }
+}
+#sas-input .sas-categories {
+	margin-top: 20px;
+}
+#sas-result {
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 20px;
+}
+#sas-result .cat_box {
+	width: 100%;
+	border: solid 1px #ccc;
+	margin-bottom: 20px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);
+	padding-bottom: 25px;
+}
+#sas-result .cat_box .cat_title {
+	text-align: center;
+	color: #fff;
+}
+#sas-result .cat_box .row .dashicons {
+	margin: 8px 5px 0px 0px;
+}
+#sas-result .cat_box .cat_title p {
+	padding: 5px 0px 5px 0px;
+}
+#sas-result .cat_box .row {
+	padding: 0px 10px 0px 10px;
+}
+#sas-result .cat_box .row a {
+	color: #333;
+}
+@media only screen and (min-width: 1000px) {
+	#sas-result .cat_box {
+		width: 45%;
+		margin: 2.5%;
+	}
+}
