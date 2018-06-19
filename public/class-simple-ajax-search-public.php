@@ -51,7 +51,7 @@ class Simple_Ajax_Search_Public {
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
 
-		$this->load_dependencies();
+		//$this->load_dependencies();
 	}
 
 	/**
@@ -142,7 +142,7 @@ class Simple_Ajax_Search_Public {
 			'color_1'   => sanitize_text_field( $atts['headings'] ),
 			'color_2'   => sanitize_text_field( $atts['checked'] ),
 			'color_3'   => sanitize_text_field( $atts['unchecked'] ),
-			'cta'       => '<div id="not_found"><p><strong>' . esc_html( $atts['not_found'] ) . '</strong></p></div>',
+			'cta'       => '<div id="not_found"><p><strong>' . sanitize_text_field( $atts['not_found'] ) . '</strong></p></div>',
 		);
 
 		wp_localize_script( $this->plugin_name, 'ajax_object_search', $ajax_args );

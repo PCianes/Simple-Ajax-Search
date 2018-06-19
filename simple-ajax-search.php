@@ -14,7 +14,7 @@
  * @wordpress-plugin
  * Plugin Name:       Simple Ajax Search
  * Plugin URI:        https://pablocianes.com
- * Description:       Easily create a dynamic ajax search engine for your content.
+ * Description:       Easily create a dynamic ajax search engine for your blog.
  * Version:           1.0.0
  * Author:            Pablo Cianes
  * Author URI:        https://pablocianes.com
@@ -79,8 +79,8 @@ function deactivate_simple_ajax_search() {
 	Simple_Ajax_Search_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_simple_ajax_search' );
-register_deactivation_hook( __FILE__, 'deactivate_simple_ajax_search' );
+//register_activation_hook( __FILE__, 'activate_simple_ajax_search' );
+//register_deactivation_hook( __FILE__, 'deactivate_simple_ajax_search' );
 
 /**
  * The core plugin class that is used to define internationalization,
