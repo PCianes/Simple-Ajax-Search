@@ -13,7 +13,6 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Simple Ajax Search
- * Plugin URI:        https://pablocianes.com
  * Description:       Easily create a dynamic ajax search engine for your blog.
  * Version:           1.0.0
  * Author:            Pablo Cianes
@@ -49,7 +48,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'PLUGIN_NAME_VERSION', '1.0.0' );
+define( 'SIMPLE_AJAX_SEARCH_VERSION', '1.0.0' );
 
 /**
  * The code that runs only in dev mode

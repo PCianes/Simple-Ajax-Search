@@ -66,8 +66,8 @@ class Simple_Ajax_Search {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'PLUGIN_NAME_VERSION' ) ) {
-			$this->version = PLUGIN_NAME_VERSION;
+		if ( defined( 'SIMPLE_AJAX_SEARCH_VERSION' ) ) {
+			$this->version = SIMPLE_AJAX_SEARCH_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
