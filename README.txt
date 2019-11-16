@@ -3,7 +3,7 @@ Contributors: sumapress, pablocianes
 Donate link: https://pablocianes.com
 Tags: search, search engine, ajax, blog, seeker
 Requires at least: 4.6
-Tested up to: 5.1
+Tested up to: 5.3
 Stable tag: trunk
 Requires PHP: 5.2.4
 License: GPLv2 or later

@@ -19,7 +19,7 @@
 	<div class="sas-categories">
 		<?php foreach ( $categories as $category ) : ?>
 			<input class="sas-custom-check" id="<?php echo (int) $category->term_id; ?>" type="checkbox" checked/>
-			<label class="sas-custom-check-label" style="background: <?php echo esc_html( $color_label_checked ); ?>;" for="<?php echo (int) $category->term_id; ?>" title="<?php esc_html_e( 'Click to select', 'simple-ajax-search' ); ?>"><?php echo esc_html( $category->name ); ?></label>
+			<label class="sas-custom-check-label" for="<?php echo (int) $category->term_id; ?>" title="<?php esc_html_e( 'Click to select', 'simple-ajax-search' ); ?>"><?php echo esc_html( $category->name ); ?></label>
 		<?php endforeach; ?>
 	</div>
 </div>
