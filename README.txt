@@ -70,10 +70,16 @@ Just put **`[sas-input]`** where you want the input for the search, and put **`[
 
 == Changelog ==
 
+= 1.0.1 =
+* Fix notice.
+
 = 1.0.0 =
 * First publicly available version.
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+* Fix notice.
 
 = 1.0.0 =
 * First publicly available version.
